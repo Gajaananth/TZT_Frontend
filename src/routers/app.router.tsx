@@ -12,8 +12,11 @@ import { FeesPage } from '../pages/FeesPage'
 import { CoursesPage } from '../pages/CoursesPage'
 import { CourseDetailPage } from '../pages/CourseDetailPage'
 import { ExamsPage } from '../pages/ExamsPage'
+import { ExamCreatorPage } from '../pages/ExamCreatorPage'
 import { ExamTakerPage } from '../pages/ExamTakerPage'
 import { ExamResultsPage } from '../pages/ExamResultsPage'
+import { GradingPage } from '../pages/GradingPage'
+import { DiscussionsPage } from '../pages/DiscussionsPage'
 import { NotificationsPage } from '../pages/NotificationsPage'
 import { ProfilePage } from '../pages/ProfilePage'
 import { IdCardPage } from '../pages/IdCardPage'
@@ -148,6 +151,46 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <ExamsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/grading',
+    element: (
+      <ProtectedRoute requiredRoles={['Teacher', 'Admin', 'SuperAdmin']}>
+        <GradingPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/discussions',
+    element: (
+      <ProtectedRoute>
+        <DiscussionsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/discussions/:topicId',
+    element: (
+      <ProtectedRoute>
+        <DiscussionsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/exams/new',
+    element: (
+      <ProtectedRoute requiredRoles={['Teacher', 'Admin', 'SuperAdmin']}>
+        <ExamCreatorPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/exams/:examId/edit',
+    element: (
+      <ProtectedRoute requiredRoles={['Teacher', 'Admin', 'SuperAdmin']}>
+        <ExamCreatorPage />
       </ProtectedRoute>
     ),
   },
